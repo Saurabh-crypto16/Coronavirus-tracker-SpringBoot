@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Coronavirus Tracker</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <h1>CoronaVirus Tracker Spring Boot Application</h1>
+        <p>This application reports the current number of cases reported across the globe</p>
+
+        <p th:text="${testName}"></p>
+        <div class="jumbotron bg-primary text-white">
+            <h1 class="display-4" th:text="${totalReportedCases}"></h1>
+            <p class="lead">Total cases reported as of today</p>
+        </div>
+
+        <table class="table bg-info text-dark">
+            <tr>
+                <th>Country</th>
+                <th>Total cases reported</th>
+                <th>Changes since yesterday</th>
+            </tr>
+            <!--each is used to iterate over the data-->
+            <tr th:each="locationStat: ${locationStats}">
+                <td th:text="${locationStat.state}"></td>
+                <td th:text="${locationStat.latestTotalCases}">0</td>
+                <td th:text="${locationStat.diffFromPrevDay}">0</td>
+            </tr>
+        </table>
+
+    </div>
+
+</body>
+
+</html>
